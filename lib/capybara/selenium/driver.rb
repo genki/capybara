@@ -131,7 +131,7 @@ class Capybara::Selenium::Driver < Capybara::Driver::Base
                 warn "localStorage clear requested but is not available for this driver"
               end
             end
-          rescue Selenium::WebDriver::Error::UnhandledError
+          rescue Selenium::WebDriver::Error::UnknownError
             # delete_all_cookies fails when we've previously gone
             # to about:blank, so we rescue this error and do nothing
             # instead.
@@ -265,7 +265,7 @@ class Capybara::Selenium::Driver < Capybara::Driver::Base
 
   def invalid_element_errors
     [::Selenium::WebDriver::Error::StaleElementReferenceError,
-     ::Selenium::WebDriver::Error::UnhandledError,
+     ::Selenium::WebDriver::Error::UnknownError,
      ::Selenium::WebDriver::Error::ElementNotVisibleError,
      ::Selenium::WebDriver::Error::InvalidSelectorError, # Work around a race condition that can occur with chromedriver and #go_back/#go_forward
      ::Selenium::WebDriver::Error::ElementNotInteractableError,
